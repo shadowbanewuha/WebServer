@@ -1,0 +1,29 @@
+.navbar {
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    display: flex;
+    list-style: none;
+    padding-top: 0px;
+    height: 44px;
+    background: #60ff54;
+}
+
+li {
+    list-style-type: none;
+    float: left;
+}
+
+a {
+    display: inline;
+    width: 200px;
+    height: 40px;
+    color: #fffbfd;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+}
+
+p {
+    letter-spacing: 30px;
+}

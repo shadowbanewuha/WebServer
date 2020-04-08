@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A</title>
+    <link rel="stylesheet" type="text/css" href="../css/base.css"/>
+    <script src="../js/checkparam.js"></script>
+    <script type="text/javascript">
+        function commituserinfo() {
+            var valid = false;
+            do {
+                if (!checkUsrName()) break;
+                if (!checkPwd()) break;
+                if (!checkRepwd()) break;
+                if (!checkEmail()) break;
+                valid = true;
+            } while (false)
+            if (valid) {
+                document.getElementById("form").submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="login">
+        <h1>注  册</h1>
+        <form action="./../signup.php" method="post" style="margin-top: 40px" id="form">
+            <p><span class="splable"> 用户名 :</span> <input type="text" placeholder="用户名" name="usr" id="usr" onblur="checkUsrName()"/><span class="sptip" id="usr_prompt"></span></p>
+            <p><span class="splable"> 密 码 :</span> <input type="password" placeholder="密码" name="pwd" id="pwd" onblur="checkPwd()"/><span class="sptip" id="pwd_prompt"></span></p>
+            <p><span class="splable"> 确认密码 :</span> <input type="password" placeholder="确认密码" id="repwd" onblur="checkRepwd()"/><span class="sptip" id="repwd_prompt"></span></p>
+            <p><span class="splable"> 邮 箱 :</span> <input type="text" placeholder="邮箱" name="email" id="email" onblur="checkEmail()"/><span class="sptip" id="email_prompt"></span></p>
+            <p><input class="inputmix" type="button" value="注 册" onclick="commituserinfo()"/></p>
+        </form>
+        <p style="margin-top: 24px" align="center"><span class="splable">已有账号? </span><a class="lin" href="signin.html">登录</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A</title>
+    <link rel="stylesheet" type="text/css" href="../css/base.css"/>
+    <script src="../js/ajax.js"></script>
+    <script>
+        function login() {
+            tiplabel = document.getElementById('tiplab')
+            var usr = document.getElementById('usr').value
+            if (usr.length == 0) {
+                tiplabel.style.display = "block"
+                tiplabel.innerHTML = "请输入用户名"
+                return
+            }
+            var pwd = document.getElementById('pwd').value
+            if (pwd.length == 0) {
+                tiplabel.style.display = "block"
+                tiplabel.innerHTML = "请输入密码"
+                return
+            }
+            var code = document.getElementById('code').value
+            if (code.length == 0) {
+                tiplabel.style.display = "block"
+                tiplabel.innerHTML = "请输入验证码"
+                return
+            }
+            param = "usr="+usr+"&pwd="+pwd+"&code="+code
+            ajax_post_request('../signin.php',
+                param,
+                function suc(xhr) {
+                    data = JSON.parse(xhr.responseText)
+                    code = data['code']
+                    msg = data['msg']
+                    if (code == 0) {
+                        tiplabel.style.display = "none"
+                        tiplabel.innerHTML = ""
+                        window.location.href =  "./usercenter.html";
+                    } else if(code == 5){
+                        window.location.href =  "./../admin";
+                    } else {
+                        tiplabel.style.display = "block"
+                        tiplabel.innerHTML = msg
+                    }
+                },
+                function er(xhr) {
+                    tiplabel.style.display = "block"
+                    tiplabel.innerHTML = "无法连接到服务器..."
+                }
+            )
+        }
+
+        function changeVerify(img) {
+            img.src = "./../if/verifycode.php"
+        }
+    </script>
+</head>
+<body>
+<div id="login">
+    <h1 style="margin-left: 80px">登  录</h1>
+    <form style="margin-top: 40px">
+        <p><span class="splable"> 账 号 :</span> <input type="text" required="required" placeholder="用户名/邮箱" id="usr" name="usr"/></p>
+        <p><span class="splable"> 密 码 :</span> <input type="password" required="required" placeholder="密码" id="pwd" name="pwd"/></p>
+        <p><span class="splable"> 验证码 :</span> <input type="text" style="width: 60px; height: 20px" required="required" id="code" name="code"/><img src="./../if/verifycode.php" width="100px" height="40px" style="margin-left: 20px; vertical-align: -16px;" onclick="changeVerify(this)"/></p>
+        <p><span class="sptip" style="display: none" id="tiplab"></span></p>
+        <button class="but" type="button" onclick="login()" >登 录</button>
+    </form>
+    <p style="margin-top: 24px;  margin-left: 40px" align="center"><span class="splable">没有账号? </span><a class="lin" href="signup.html">立即注册</a> <a class="lin" href="forgetpwd.html">忘记密码</a></p>
+</div>
+</body>
+</html>

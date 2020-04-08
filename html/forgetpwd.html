@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/base.css"/>
+    <title>A</title>
+    <script src="../js/checkparam.js"></script>
+    <script type="text/javascript">
+        function submitEmail() {
+            return checkEmail();
+        }
+    </script>
+</head>
+<body>
+    <div id="login">
+        <span class="spcontent" style="margin-left: 88px">我们将向你的邮箱发送一封邮件，请点击邮件中的链接设置新密码。</span>
+        <form action="../getbackpwd.php" method="post" onsubmit="return submitEmail()" style="margin-top: 32px">
+            <p><span class="splable"> 邮 箱 :</span> <input type="text" required="required" name="email" id="email" onblur="checkEmail()"/><span class="sptip" id="email_prompt"></span></p>
+            <input class="inputmix" type="submit" value="确认"/>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>迅聊平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/base.css"/>
+    <script src="../js/checkparam.js"></script>
+    <script type="text/javascript">
+        function confirmChange() {
+            return checkPwd();
+        };
+    </script>
+</head>
+<body>
+<div id="login">
+    <h1 style="margin-left: 80px">重置密码</h1>
+    <form action="../resetpwd.php" method="post" style="margin-top: 40px" onsubmit="return confirmChange()">
+        <p hidden><span class="splable"> 邮箱 :</span> <input type="text" name="email" value="<?php echo $email ?>"/></p>
+        <p hidden><span class="splable"> Token :</span> <input type="text" name="token" value="<?php echo $resettoken ?>"/></p>
+        <p><span class="splable"> 新密码 :</span> <input type="password" required="required" name="pwd" id="pwd" onblur="checkPwd()"/><span class="sptip" id="pwd_prompt"> </span></p>
+        <p><span class="splable"> 确认新密码 :</span> <input type="password" required="required" id="repwd" onblur="checkRepwd()"/><span class="sptip" id="repwd_prompt"> </span></p>
+        <input class="inputmix" type="submit" value="确认修改">
+    </form>
+</div>
+</body>
+</html>

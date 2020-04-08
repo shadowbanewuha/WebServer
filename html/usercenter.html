@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+    <meta charset="UTF-8">
+    <title>迅聊平台</title>
+    <link rel="stylesheet" type="text/css" href="../css/base.css"/>
+    <script src="../js/ajax.js"></script>
+    <script>
+        function getuserinfo() {
+            ajax_get_request('../userinfo.php?action=getusercenterinfo',
+                function success(xhr) {
+                    data = JSON.parse(xhr.responseText);
+                    code = data['code']
+                    msg = data['msg']
+                    if (code == 0) {
+                        document.getElementById('usr').innerHTML = msg['usr'];
+                        document.getElementById('viptime').innerHTML = msg['vipenddate'];
+                        document.getElementById('ip').innerHTML = msg['lastloginip'];
+                    } else {
+                        errordes = msg['des'];
+                        errurl = '../error.php?' + 'code=' + code
+                        window.location.href = errurl
+                    }
+                },
+                function error(xhr) {
+
+                }
+            )
+        }
+
+        window.onload = function () {
+            getuserinfo();
+        }
+    </script>
+</head>
+<body>
+<div id="login">
+    <p>
+        <span class="spcontent">尊敬的</span>
+        <span class="spmiximp" style="font-size: 20px" id="usr"></span></br>
+        <span class="spcontent">您本次登录的IP为</span>
+        <span class="spmiximp" id="ip"></span></br>
+        <span class="spcontent">您的VIP到期时间为</span>
+        <span class="spmiximp" id="viptime"></span></br>
+    </p>
+    <p style="margin-top: 20px">
+        <span class="spcontent">您可以选择充值延长VIP到期时间：</span><br>
+        <table border="1" width="80%" bgcolor="#e9faff" cellpadding="2" style="margin-top: -10px">
+            <tr align="center">
+                <th colspan="2">时长</th>
+                <th>价格</th>
+                <th>操作</th>
+            </tr>
+            <tr align="center">
+                <td colspan="2">1天</td>
+                <td>4元</td>
+                <td><a style="color: green;" href="../addcredit.php?level=1">充值</a> </td>
+            </tr>
+            <tr align="center">
+                <td colspan="2">14天</td>
+                <td>50元</td>
+                <td><a style="color: green;" href="../addcredit.php?level=14">充值</a> </td>
+            </tr>
+            <tr align="center">
+                <td colspan="2">1个月</td>
+                <td>99元</td>
+                <td><a style="color: green;" href="../addcredit.php?level=30">充值</a> </td>
+            </tr>
+            <tr align="center">
+                <td colspan="2">3个月</td>
+                <td>269元</td>
+                <td><a style="color: green;" href="../addcredit.php?level=90">充值</a> </td>
+            </tr>
+            <tr align="center">
+                <td colspan="2">6个月</td>
+                <td>479元</td>
+                <td><a style="color: green;" href="../addcredit.php?level=180">充值</a> </td>
+            </tr>
+            <tr align="center">
+                <td colspan="2">12个月</td>
+                <td>888元</td>
+                <td><a style="color: green;" href="../addcredit.php?level=365">充值</a> </td>
+            </tr>
+        </table>
+    </p>
+    <p style="margin-top: 20px">
+        <a style="color: yellow; margin-left: 4px" href="../logout.php">注销</a>
+        <!--<a style="color: yellow; margin-left: 20px" href="./usercenter.html">查询</a>  -->
+        <a style="color: yellow; margin-left: 20px" href="./changepwd.html">修改密码</a>
+    </p>
+</div>
+</body>
+</html>
